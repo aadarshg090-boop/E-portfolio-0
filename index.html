@@ -90,7 +90,63 @@ nav{position:sticky;top:0;z-index:40;padding-inline:clamp(10px,2vw,24px);backgro
 @media(max-width:780px){nav{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.tile,.achievement,.why-card,.sidecard,.dossier-visual,.portrait-frame,.contactbox{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}}
 @media(prefers-reduced-motion:reduce){.tile,.achievement,.why-card,.portrait-frame img,.stat{transition:none!important}}
 
+
+/* CINEMATIC CELESTIAL REDESIGN — luminous anime-sky atmosphere, glass, depth */
+:root{--sky-blue:#86c9ff;--sky-lilac:#b7a9ff;--sunlight:#ffe7a7;--glass-strong:rgba(17,24,34,.48)}
+body{background:radial-gradient(ellipse at 68% 8%,#213a59 0,transparent 36%),radial-gradient(ellipse at 18% 18%,#34274f 0,transparent 38%),linear-gradient(180deg,#080c16 0%,#0b1018 52%,#080b0a 100%)}
+#skyScene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;perspective:1000px;isolation:isolate}
+#skyScene .skywash{position:absolute;inset:-15%;background:radial-gradient(ellipse at 72% 25%,rgba(128,192,255,.22),transparent 30%),radial-gradient(ellipse at 36% 42%,rgba(255,174,196,.13),transparent 32%),radial-gradient(ellipse at 55% 72%,rgba(182,255,106,.06),transparent 35%);filter:blur(18px);animation:skyPulse 14s ease-in-out infinite alternate}
+#skyScene .sunbeam{position:absolute;width:48vw;height:90vh;top:-20vh;right:10vw;background:linear-gradient(180deg,rgba(255,221,164,.08),transparent 70%);transform:rotate(28deg);filter:blur(30px);animation:beamShift 18s ease-in-out infinite alternate}
+#skyScene .cloud{position:absolute;border-radius:50%;filter:blur(38px);opacity:.16;background:linear-gradient(120deg,#93c9ff,#e7c7ff 40%,#ffc4cf);width:52vw;height:22vw;animation:cloudDrift 44s linear infinite;transform:translateZ(-120px)}
+#skyScene .cloud.c2{width:40vw;height:18vw;opacity:.11;top:40%;left:10%;animation-duration:56s;animation-direction:reverse}
+#skyScene .cloud.c3{width:36vw;height:14vw;opacity:.12;top:12%;right:-8%;animation-duration:62s}
+#skyScene .stars{position:absolute;inset:0}
+#skyScene .star{position:absolute;width:2px;height:2px;background:#d9eaff;border-radius:50%;box-shadow:0 0 7px 2px rgba(173,215,255,.32);animation:twinkle 3s ease-in-out infinite}
+#skyScene .horizon{position:absolute;left:-10%;right:-10%;bottom:-26%;height:52%;background:radial-gradient(ellipse at 50% 0,rgba(121,167,223,.18),transparent 58%);filter:blur(30px)}
+.wrap{z-index:2}
+.hero{position:relative;min-height:92vh;isolation:isolate}
+.hero:before{content:"";position:absolute;inset:6% -4% 10%;border-radius:40px;background:linear-gradient(120deg,rgba(255,255,255,.028),rgba(255,255,255,0)),radial-gradient(ellipse at 80% 20%,rgba(134,201,255,.09),transparent 40%);border:1px solid rgba(225,242,255,.06);backdrop-filter:blur(4px);z-index:-1}
+.hero .kicker{color:#b5d9ff}.hero h1 em{color:#b8ff6a;text-shadow:0 0 35px rgba(184,255,106,.14)}
+.hero-p{color:#bdc9d8}.smallnote{color:#a0b0c5}
+.portrait-wrap{perspective:1200px;transform-style:preserve-3d}
+.portrait-frame{border-radius:22px;border:1px solid rgba(223,242,255,.26);background:rgba(255,255,255,.03);transform:rotateY(-7deg) rotateZ(1deg) translateZ(20px);box-shadow:0 45px 100px rgba(0,0,0,.5),0 0 55px rgba(137,197,255,.1),inset 0 1px rgba(255,255,255,.3}
+.portrait-wrap:after{content:"";position:absolute;inset:9% 5% 3%;border:1px solid rgba(163,209,255,.16);border-radius:24px;transform:translateZ(-22px) rotateY(7deg);background:linear-gradient(135deg,rgba(255,255,255,.025),transparent);pointer-events:none}
+.portrait-caption{background:linear-gradient(90deg,rgba(5,9,15,.5),rgba(5,9,15,.05));padding:14px 16px;border-radius:12px;backdrop-filter:blur(12px)}
+.stats{background:linear-gradient(90deg,rgba(255,255,255,.02),rgba(255,255,255,.045),rgba(255,255,255,.02));border-color:rgba(210,235,255,.14);backdrop-filter:blur(12px);border-radius:12px;padding:26px 12px}
+.stat{border-color:rgba(210,235,255,.12)}.number{color:#e7f2ff;text-shadow:0 0 25px rgba(139,200,255,.08)}
+.section{position:relative}
+.sectionhead h2{ text-shadow:0 6px 35px rgba(0,0,0,.25)}
+.tile,.achievement,.why-card,.sidecard,.dossier-visual,.contactbox{border-radius:20px;overflow:hidden}
+.tile{background:linear-gradient(145deg,rgba(26,37,50,.65),rgba(6,10,15,.48));border:1px solid rgba(219,239,255,.14);box-shadow:0 25px 65px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.07);backdrop-filter:blur(24px) saturate(140%)}
+.tile.feature{background:radial-gradient(ellipse at 75% 20%,rgba(140,197,255,.14),transparent 44%),linear-gradient(145deg,rgba(23,32,44,.7),rgba(5,9,13,.55))}
+.tiletop .tag{background:rgba(160,205,255,.05);border-color:rgba(220,240,255,.18);backdrop-filter:blur(16px)}
+.tile h3,.achievement strong{color:#edf5ff}.tile p,.achievement small{color:#b5c3d4}
+.orb{background:radial-gradient(circle at 27% 23%,#e4f6ff,#a3c8f0 5%,#394f6c 22%,#101924 45%,#030406 70%);box-shadow:inset -25px -20px 40px #000,0 0 80px rgba(135,196,255,.16);animation:orbFloat 7s ease-in-out infinite}
+.orb:after{border-color:rgba(170,215,255,.24);box-shadow:0 0 20px rgba(153,203,255,.08)}
+.arttext{color:rgba(200,225,255,.12)}
+.dossier-visual{background:radial-gradient(ellipse at 50% 50%,rgba(137,197,255,.2),transparent 56%),linear-gradient(150deg,rgba(23,34,49,.72),rgba(5,7,11,.7));border:1px solid rgba(219,239,255,.14);border-radius:22px;box-shadow:0 28px 70px #0004,inset 0 1px rgba(255,255,255,.1)}
+.dossier-globe{background:radial-gradient(circle at 26% 22%,#f0f9ff 0,#a4d5ff 2%,#4a6c95 12%,#172333 32%,#05080e 67%);box-shadow:inset -25px -30px 55px #000,inset 7px 6px 22px #d9ffbd44,0 0 120px rgba(137,197,255,.16),0 30px 50px #0005}
+.dossier-orbit{border-color:rgba(164,209,255,.3);box-shadow:0 0 20px rgba(164,209,255,.06)}
+.dossier-orbit.orbit-b{border-color:rgba(255,220,186,.18)}
+.dossier-mark span{color:#b8ff6a;text-shadow:0 0 30px #b8ff6a40}
+.why-card{background:linear-gradient(145deg,rgba(27,39,53,.64),rgba(6,10,15,.56));border-color:rgba(210,235,255,.14);backdrop-filter:blur(22px)}
+.why-card>span,.dossier-content h4{color:#b8ff6a}
+.achievement{background:linear-gradient(145deg,rgba(27,38,51,.62),rgba(6,10,14,.55));border-color:rgba(215,239,255,.13);backdrop-filter:blur(20px)}
+.achievement .value{color:#b8ff6a}
+.sidecard{background:radial-gradient(circle at top right,rgba(135,195,255,.16),transparent 42%),linear-gradient(140deg,rgba(28,40,54,.7),rgba(7,10,13,.5));backdrop-filter:blur(24px)}
+.contactbox{background:linear-gradient(120deg,#b8ff6a,#e3ffb5 60%,#b8ff6a);color:#0b1008;box-shadow:0 35px 90px rgba(184,255,106,.08),inset 0 1px rgba(255,255,255,.65}
+footer{color:#a0b0c3}
+.reveal{filter:drop-shadow(0 12px 24px rgba(0,0,0,.12))}
+@keyframes skyPulse{from{transform:scale(1) translateY(0);opacity:.7}to{transform:scale(1.12) translateY(2%);opacity:1}}
+@keyframes beamShift{from{opacity:.35;transform:rotate(28deg) translateX(-2vw)}to{opacity:.8;transform:rotate(31deg) translateX(4vw)}}
+@keyframes cloudDrift{0%{translate:-12vw 0}50%{translate:8vw -2vh}100%{translate:30vw 0}}
+@keyframes twinkle{0%,100%{opacity:.18;transform:scale(.8)}50%{opacity:.95;transform:scale(1.6)}}
+@keyframes orbFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(3deg)}}
+@media(max-width:780px){#skyScene .cloud{width:80vw;height:36vw;filter:blur(24px)}.hero:before{inset:0;border-radius:22px}.portrait-frame{transform:none}.stats{padding:20px 8px}}
+@media(prefers-reduced-motion:reduce){#skyScene .skywash,#skyScene .sunbeam,#skyScene .cloud,#skyScene .star,.orb{animation:none!important}}
+
 </style></head><body>
+<div id="skyScene" aria-hidden="true"><div class="skywash"></div><div class="sunbeam"></div><div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div><div class="stars"></div><div class="horizon"></div></div>
 <div id="progress"></div><div id="sectionTransition" aria-hidden="true"></div><div id="glow"></div><div class="wrap">
 <nav><a class="brand" href="#top"><span class="mark">A</span>AADARSH<span style="color:var(--green)">.</span></a><div class="links"><a href="#work">Work</a><a href="#aadarsh">Aadarsh</a><a href="#why-i">Why I</a><a href="#about">About</a><a href="#achievements">Achievements</a><a href="#mediaVault">Certificates</a><a class="pill" href="#contact">Connect ↗</a></div></nav>
 <main id="top">
@@ -248,4 +304,5 @@ $('backupInput').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{c
 <script>
 (()=>{const veil=document.getElementById('sectionTransition');document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const target=document.querySelector(a.getAttribute('href'));if(!target)return;const x=e.clientX||innerWidth/2,y=e.clientY||innerHeight/2;veil.style.setProperty('--tx',x+'px');veil.style.setProperty('--ty',y+'px');veil.classList.add('active');setTimeout(()=>veil.classList.remove('active'),280)}));})();
 </script>
+<script>(()=>{const scene=document.getElementById('skyScene');if(!scene)return;const stars=scene.querySelector('.stars');for(let i=0;i<88;i++){const s=document.createElement('i');s.className='star';s.style.left=(Math.random()*100)+'%';s.style.top=(Math.random()*68)+'%';s.style.animationDelay=(Math.random()*4)+'s';s.style.opacity=(.15+Math.random()*.7).toFixed(2);stars.appendChild(s)}const hero=document.querySelector('.hero');const wrap=document.querySelector('.portrait-wrap');let raf=false;window.addEventListener('pointermove',e=>{if(raf||matchMedia('(prefers-reduced-motion: reduce)').matches)return;raf=true;requestAnimationFrame(()=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;scene.style.setProperty('--mx',x);scene.style.setProperty('--my',y);if(wrap&&innerWidth>780){wrap.style.transform='translate3d('+(-x*8)+'px,'+(-y*7)+'px,0) rotateX('+(-y*2)+'deg) rotateY('+(x*3)+'deg)'}raf=false})},{passive:true});window.addEventListener('scroll',()=>{scene.style.setProperty('--scroll',Math.min(scrollY/1000,1))},{passive:true});})();</script>
 </body></html>
