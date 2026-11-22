@@ -204,7 +204,80 @@ footer{color:#a0b0c3}
 <section class="section" id="mediaVault"><div class="sectionhead reveal"><div><div class="kicker">03 / Media & certificates</div><h2>Proof. Projects.<br>Moments.</h2></div><p class="sectiondesc">Certificates, videos and project links collected here. Individual public Drive files may be embedded; folders open directly in Drive.</p></div>
 <div class="actions" style="margin-bottom:20px"><a class="btn secondary" href="https://drive.google.com/drive/folders/1wqC1saXDpsZpeslcsBxilJfgNoJxHc74" target="_blank" rel="noopener">Open certificate & project Drive ↗</a></div>
 <div id="portfolioResources" class="achievements"></div></section>
-<section class="section" id="contact"><div class="contactbox reveal"><div class="kicker" style="color:#26391c">03 / Open to thoughtful collaboration</div><h2>Ideas are better<br>when they move.</h2><div class="contactrow"><p>Interested in technology, debate, creative projects, learning and conversations with people who enjoy building meaningful things.</p><a class="contactlink" href="https://www.linkedin.com/in/aadarsh-gupta-715808398/">Connect on LinkedIn ↗</a></div><div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:2"><a class="contactlink" style="border-color:rgba(0,0,0,.3)" href="https://www.linkedin.com/in/aadarsh-gupta-715808398/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="contactlink" style="border-color:rgba(0,0,0,.3)" href="https://wa.me/919044455536" target="_blank" rel="noopener">WhatsApp ↗</a></div></div></section>
+<!-- LATEST PROJECTS / PRIVATE EDIT PANEL -->
+<style id="latest-projects-style">
+#latest-projects{padding-top:clamp(56px,9vw,100px)}
+#latest-projects .lp-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:28px}
+#latest-projects .lp-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#a5ff4d}
+#latest-projects h2{font-size:clamp(38px,7vw,84px);line-height:.94;letter-spacing:-.075em;margin:14px 0}
+#latest-projects .lp-lede{color:#9da4ae;max-width:460px;line-height:1.7}
+#latest-projects .lp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.lp-card{background:linear-gradient(145deg,#15191e,#0d0f12);border:1px solid rgba(255,255,255,.1);border-radius:22px;overflow:hidden;position:relative;transition:transform .35s,border-color .35s,box-shadow .35s}
+.lp-card:hover{transform:translateY(-7px);border-color:rgba(165,255,77,.4);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.lp-media{aspect-ratio:16/9;background:#08090b;display:grid;place-items:center;overflow:hidden;position:relative}
+.lp-media img,.lp-media video{width:100%;height:100%;object-fit:cover;display:block}
+.lp-media video{background:#08090b}
+.lp-placeholder{color:#68717c;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.lp-card-body{padding:22px 24px 24px}
+.lp-card-meta{color:#a5ff4d;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.lp-card-title{font-size:clamp(20px,2.5vw,30px);letter-spacing:-.04em;margin:10px 0}
+.lp-card-desc{color:#9da4ae;line-height:1.65;font-size:14px}
+.lp-card-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.lp-tag{font-size:10px;padding:6px 10px;border-radius:99px;background:#1c2127;color:#c2cad1;border:1px solid #30363e}
+.lp-gallery{display:flex;gap:8px;overflow-x:auto;margin-top:14px;padding-bottom:4px}
+.lp-gallery img{height:90px;width:auto;max-width:170px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+#lp-secret{position:absolute;right:0;top:0;width:36px;height:36px;opacity:.09;border:1px solid #fff;border-radius:50%;background:#14171b;color:#fff;cursor:pointer;transition:opacity .2s}
+#lp-secret:hover,#lp-secret:focus{opacity:.65}
+.lp-admin{display:none;position:fixed;inset:0;z-index:99999;background:rgba(3,5,7,.82);backdrop-filter:blur(18px);padding:18px;overflow:auto}
+.lp-admin.open{display:block}
+.lp-admin-box{max-width:760px;margin:5vh auto;background:#11151a;border:1px solid #343c45;border-radius:22px;padding:24px;color:#f3f5f6;box-shadow:0 30px 90px #0009}
+.lp-admin-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+.lp-admin-head h3{margin:0;font-size:24px}
+.lp-admin-box label{display:block;font-size:12px;color:#b2bbc4;margin:12px 0 6px}
+.lp-admin-box input,.lp-admin-box textarea{width:100%;box-sizing:border-box;background:#090c0f;border:1px solid #343c45;color:#fff;padding:12px;border-radius:10px;font:inherit}
+.lp-admin-box textarea{min-height:95px;resize:vertical}
+.lp-admin-box input[type=file]{padding:10px}
+.lp-admin-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.lp-admin-actions button,.lp-admin-head button{border:1px solid #3a424b;background:#1a2026;color:#f4f6f7;padding:10px 14px;border-radius:10px;cursor:pointer}
+.lp-admin-actions button.primary{background:#a5ff4d;color:#07110a;border-color:#a5ff4d;font-weight:700}
+.lp-admin-actions button.danger{color:#ff9e9e}
+.lp-admin-hint{color:#858f9a;font-size:12px;line-height:1.6;margin-top:12px}
+.lp-list{border-top:1px solid #303741;margin-top:20px;padding-top:14px}
+.lp-item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #282f37}
+.lp-item button{border:1px solid #3a424b;background:#191f25;color:#fff;border-radius:8px;padding:7px 10px}
+@media(max-width:680px){#latest-projects .lp-head{display:block}#latest-projects .lp-grid{grid-template-columns:1fr}.lp-admin-box{padding:18px}}
+</style>
+<section class="section" id="latest-projects">
+<button id="lp-secret" title="Projects admin" aria-label="Open project editor">✳</button>
+<div class="lp-head"><div><div class="lp-eyebrow">06 / Latest projects</div><h2>Things I've been<br>building lately.</h2></div><p class="lp-lede">Experiments, prototypes, ideas in motion, and selected work. A living collection—updated as projects evolve.</p></div>
+<div class="lp-grid" id="lp-grid"><div class="lp-card"><div class="lp-media"><div class="lp-placeholder">Projects loading…</div></div><div class="lp-card-body"><h3 class="lp-card-title">My latest work will live here.</h3><p class="lp-card-desc">Open the discreet ✳ control to add your projects and media glimpses.</p></div></div></div>
+</section>
+<div class="lp-admin" id="lp-admin" aria-hidden="true"><div class="lp-admin-box"><div class="lp-admin-head"><h3>Project Studio</h3><button id="lp-close" aria-label="Close">✕</button></div>
+<div id="lp-auth"><p>Private editor access</p><label>Access phrase</label><input type="password" id="lp-key" placeholder="Enter editor phrase"><div class="lp-admin-actions"><button class="primary" id="lp-unlock">Unlock editor</button></div><p class="lp-admin-hint">This is a discreet front-end gate only, not secure authentication. Change the access phrase in the code before relying on it.</p></div>
+<div id="lp-editor" style="display:none"><label>Project title</label><input id="lp-title" placeholder="Project name"><label>Short description</label><textarea id="lp-desc" placeholder="What is it? What's interesting?"></textarea><label>Category / date</label><input id="lp-meta" placeholder="AI · Prototype · 2026"><label>Tags (comma separated)</label><input id="lp-tags" placeholder="AI, design, web"><label>Photos & videos (select multiple)</label><input id="lp-files" type="file" accept="image/*,video/*" multiple><p class="lp-admin-hint">No upload-size check is imposed by this editor. Browser/device storage quota still applies; large videos may fail locally. Files are saved in this browser only.</p><div class="lp-admin-actions"><button class="primary" id="lp-save">Save project</button><button id="lp-clear">Clear form</button></div><div class="lp-list" id="lp-list"></div></div></div></div>
+<script id="latest-projects-script">
+(()=>{const DB='aadarshProjectStudioDB',STORE='projects',gate=document.getElementById('lp-secret'),modal=document.getElementById('lp-admin'),grid=document.getElementById('lp-grid'),keyInput=document.getElementById('lp-key'),editor=document.getElementById('lp-editor'),auth=document.getElementById('lp-auth'),list=document.getElementById('lp-list');let editing=null,selectedFiles=[];
+const adminPhrase='SETYN-PORTFOLIO-EDIT'; // change this phrase before sharing the live site
+function db(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB,1);req.onupgradeneeded=()=>req.result.createObjectStore(STORE,{keyPath:'id',autoIncrement:true});req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
+async function all(){const d=await db();return new Promise((res,rej)=>{const r=d.transaction(STORE,'readonly').objectStore(STORE).getAll();r.onsuccess=()=>res(r.result||[]);r.onerror=()=>rej(r.error)})}
+async function put(record){const d=await db();return new Promise((res,rej)=>{const tx=d.transaction(STORE,'readwrite');const r=record.id?tx.objectStore(STORE).put(record):tx.objectStore(STORE).add(record);tx.oncomplete=()=>res(true);tx.onerror=()=>rej(tx.error)})}
+async function remove(id){const d=await db();return new Promise((res,rej)=>{const tx=d.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=()=>res(true);tx.onerror=()=>rej(tx.error)})}
+function mediaNode(file){const url=URL.createObjectURL(file.blob);if(file.type.startsWith('video/')){const v=document.createElement('video');v.src=url;v.controls=true;v.playsInline=true;return v}const img=document.createElement('img');img.src=url;img.alt=file.name||'Project media';return img}
+function card(p){const article=document.createElement('article');article.className='lp-card';const media=document.createElement('div');media.className='lp-media';const files=p.files||[];const first=files.find(f=>f.type.startsWith('image/'))||files[0];if(first)media.appendChild(mediaNode(first));else media.innerHTML='<div class="lp-placeholder">No media added</div>';article.appendChild(media);const body=document.createElement('div');body.className='lp-card-body';const meta=document.createElement('div');meta.className='lp-card-meta';meta.textContent=p.meta||'Project';body.appendChild(meta);const title=document.createElement('h3');title.className='lp-card-title';title.textContent=p.title||'Untitled project';body.appendChild(title);const desc=document.createElement('p');desc.className='lp-card-desc';desc.textContent=p.desc||'';body.appendChild(desc);if(p.tags?.length){const tags=document.createElement('div');tags.className='lp-card-tags';p.tags.forEach(t=>{const tag=document.createElement('span');tag.className='lp-tag';tag.textContent=t;tags.appendChild(tag)});body.appendChild(tags)}
+const others=files.filter(f=>f!==first&&f.type.startsWith('image/'));if(others.length){const g=document.createElement('div');g.className='lp-gallery';others.forEach(f=>{const el=mediaNode(f);g.appendChild(el)});body.appendChild(g)}
+const vids=files.filter(f=>f.type.startsWith('video/'));vids.forEach((v,i)=>{if(v!==first){const vv=document.createElement('video');vv.src=URL.createObjectURL(v.blob);vv.controls=true;vv.playsInline=true;vv.style.cssText='width:100%;border-radius:12px;margin-top:12px';body.appendChild(vv)}});
+article.appendChild(body);return article}
+async function render(){const records=await all();grid.innerHTML='';if(!records.length){const empty=document.createElement('div');empty.className='lp-card';empty.innerHTML='<div class="lp-media"><div class="lp-placeholder">Your project visuals will appear here</div></div><div class="lp-card-body"><h3 class="lp-card-title">Add your first project</h3><p class="lp-card-desc">Use the discreet ✳ button in the section to add a title, description, photos or video clips.</p></div>';grid.appendChild(empty)}else records.sort((a,b)=>b.created-a.created).forEach(p=>grid.appendChild(card(p)));list.innerHTML='';records.forEach(p=>{const row=document.createElement('div');row.className='lp-item';const t=document.createElement('span');t.textContent=p.title;const controls=document.createElement('span');const e=document.createElement('button');e.textContent='Edit';e.onclick=()=>fill(p);const d=document.createElement('button');d.textContent='Delete';d.onclick=async()=>{if(confirm('Delete this project?')){await remove(p.id);await render()}};controls.append(e,d);row.append(t,controls);list.appendChild(row)})}
+function fill(p){editing=p.id;document.getElementById('lp-title').value=p.title||'';document.getElementById('lp-desc').value=p.desc||'';document.getElementById('lp-meta').value=p.meta||'';document.getElementById('lp-tags').value=(p.tags||[]).join(',');selectedFiles=p.files||[];document.getElementById('lp-files').value='';document.getElementById('lp-save').textContent='Update project'}
+function clear(){editing=null;selectedFiles=[];['lp-title','lp-desc','lp-meta','lp-tags','lp-files'].forEach(id=>document.getElementById(id).value='');document.getElementById('lp-save').textContent='Save project'}
+gate.addEventListener('click',()=>{modal.classList.add('open');modal.setAttribute('aria-hidden','false');keyInput.focus()});document.getElementById('lp-close').addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true')});
+document.getElementById('lp-unlock').addEventListener('click',()=>{if(keyInput.value===adminPhrase){auth.style.display='none';editor.style.display='block';render()}else alert('Incorrect phrase.')});
+document.getElementById('lp-key').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('lp-unlock').click()});
+document.getElementById('lp-clear').addEventListener('click',clear);
+document.getElementById('lp-save').addEventListener('click',async()=>{const title=document.getElementById('lp-title').value.trim();if(!title){alert('Add a project title first.');return}const chosen=[...document.getElementById('lp-files').files];const existing=editing?(await all()).find(p=>p.id===editing):null;const files=[...(existing?.files||selectedFiles),...chosen.map(f=>({name:f.name,type:f.type,blob:f}))];const rec={...(existing||{}),id:editing||undefined,title,desc:document.getElementById('lp-desc').value.trim(),meta:document.getElementById('lp-meta').value.trim(),tags:document.getElementById('lp-tags').value.split(',').map(s=>s.trim()).filter(Boolean),files,created:existing?.created||Date.now()};try{await put(rec);clear();await render();alert('Saved in this browser.');}catch(err){alert('Could not save media. Browser/device storage limit may have been reached. '+err.message)}});
+modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}});
+render().catch(console.warn);
+})();</script>\n<section class="section" id="contact"><div class="contactbox reveal"><div class="kicker" style="color:#26391c">03 / Open to thoughtful collaboration</div><h2>Ideas are better<br>when they move.</h2><div class="contactrow"><p>Interested in technology, debate, creative projects, learning and conversations with people who enjoy building meaningful things.</p><a class="contactlink" href="https://www.linkedin.com/in/aadarsh-gupta-715808398/">Connect on LinkedIn ↗</a></div><div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:2"><a class="contactlink" style="border-color:rgba(0,0,0,.3)" href="https://www.linkedin.com/in/aadarsh-gupta-715808398/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="contactlink" style="border-color:rgba(0,0,0,.3)" href="https://wa.me/919044455536" target="_blank" rel="noopener">WhatsApp ↗</a></div></div></section>
 </main><footer><span>© <span id="year"></span> Aadarsh Gupta</span><span>Independent thinker · Work in progress</span><a href="#top">Back to top ↑</a></footer></div>
 <script>
 (()=>{'use strict';
