@@ -180,10 +180,13 @@ footer{color:#a0b0c3}
 <div class="event"><div class="date">COLLABORATION</div><div><div class="eventtitle">IIMT University — Generative AI & Editing</div><div class="eventdesc">Worked with IIMT University in Generative AI and editing.</div></div></div>
 </div>
 <div class="subhead" id="achievements">Selected achievements</div><div class="achievements">
-<div class="achievement"><div class="value">Monitor · Class 3C</div><strong>Class Leadership</strong><small>Class monitor in Class 3C</small></div>
-<div class="achievement"><div class="value">Vice Head Boy</div><strong>Junior Wing · Class 5</strong><small>Student leadership role</small></div>
-<div class="achievement"><div class="value">Vice Red House Representative</div><strong>Middle Wing · Class 7A</strong><small>House leadership role this year</small></div>
-<div class="achievement"><div class="value">Monitor · Class 7A</div><strong>Class Leadership</strong><small>Current class monitor role</small></div>
+<div class="leadership-journey" aria-label="Leadership journey in chronological order">
+<div class="leadership-orb" aria-hidden="true"></div>
+<div class="leadership-milestone"><div class="leadership-track"><span class="leadership-node">01</span></div><div class="leadership-card"><span class="leadership-year">EARLY YEARS · CLASS 3C</span><h3>Class Monitor</h3><p>First step into classroom leadership—taking responsibility for the class.</p><span class="leadership-stage">JUNIOR WING</span></div></div>
+<div class="leadership-milestone"><div class="leadership-track"><span class="leadership-node">02</span></div><div class="leadership-card"><span class="leadership-year">CLASS 5</span><h3>Vice Head Boy</h3><p>Selected for a wider student leadership role across the Junior Wing.</p><span class="leadership-stage">JUNIOR WING · SCHOOL LEADERSHIP</span></div></div>
+<div class="leadership-milestone"><div class="leadership-track"><span class="leadership-node">03</span></div><div class="leadership-card"><span class="leadership-year">CLASS 6A</span><h3>Class Monitor</h3><p>Continued classroom responsibility as I moved into the next stage of school.</p><span class="leadership-stage">MIDDLE WING</span></div></div>
+<div class="leadership-milestone current"><div class="leadership-track"><span class="leadership-node">04</span></div><div class="leadership-card"><span class="leadership-year">CURRENT · CLASS 7A</span><h3>Two leadership roles</h3><p><strong>Vice Red House Representative</strong> for the Middle Wing, alongside <strong>Class Monitor of 7A</strong>.</p><span class="leadership-stage">MIDDLE WING · RED HOUSE</span></div></div>
+</div>
 <div class="achievement"><div class="value">Silver · 2nd</div><strong>CBSE Clusters</strong><small>Silver medal / second place, this year</small></div>
 <div class="achievement"><div class="value">#3 State</div><strong>UPSDL by IDL</strong><small>Third state rank, this year</small></div>
 <div class="achievement"><div class="value">86%</div><strong>Half-Yearly Results</strong><small>Academic result</small></div>
@@ -576,4 +579,27 @@ nav.nav-scrolled{background:rgba(6,9,7,.88);border-bottom-color:rgba(255,255,255
  window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});update();
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('mobile-open')){nav.classList.remove('mobile-open');menu.setAttribute('aria-expanded','false');menu.innerHTML='Menu <span aria-hidden="true">☰</span>'}});
 })();
-</script></body></html>
+</script><style id="leadership-galaxy-ui">
+/* Leadership sequence — deep-space cards and orbiting accents */
+.leadership-journey{position:relative;display:grid;gap:14px;margin:10px 0 28px;padding:12px 0;isolation:isolate}
+.leadership-journey:before{content:"";position:absolute;left:27px;top:36px;bottom:36px;width:1px;background:linear-gradient(180,transparent,rgba(125,190,255,.42),rgba(183,121,255,.45),rgba(255,255,255,.12),transparent);z-index:-1}
+.leadership-orb{position:absolute;right:4%;top:5%;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle at 32% 25%,rgba(215,230,255,.18),rgba(88,100,220,.08) 14%,rgba(39,33,100,.1) 38%,transparent 72%);filter:blur(2px);pointer-events:none;z-index:-1;animation:leadOrbFloat 12s ease-in-out infinite}
+.leadership-milestone{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:stretch}
+.leadership-track{display:flex;justify-content:center;padding-top:26px}
+.leadership-node{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;font:10px 'DM Mono',monospace;color:#c7caff;border:1px solid rgba(150,165,255,.38);background:radial-gradient(circle at 30% 20%,rgba(210,220,255,.16),rgba(26,24,59,.86) 52%,#070810 78%);box-shadow:0 0 25px rgba(100,115,255,.12),inset 0 1px rgba(255,255,255,.12);position:relative}
+.leadership-node:after{content:"";position:absolute;inset:-5px;border:1px solid rgba(155,140,255,.15);border-radius:50%;transform:rotateX(62deg)}
+.leadership-card{padding:23px clamp(18px,3vw,30px);border:1px solid rgba(145,155,255,.15);border-radius:20px;background:radial-gradient(ellipse at 92% 0%,rgba(112,92,255,.10),transparent 48%),linear-gradient(145deg,rgba(20,22,42,.8),rgba(7,9,17,.72));backdrop-filter:blur(18px);box-shadow:0 16px 48px rgba(0,0,0,.26),inset 0 1px rgba(255,255,255,.05);transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s;position:relative;overflow:hidden}
+.leadership-card:before{content:"";position:absolute;top:-80px;right:-80px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(135,145,255,.12),transparent 68%);pointer-events:none}
+.leadership-card:hover{transform:translateY(-4px);border-color:rgba(160,165,255,.34);box-shadow:0 22px 60px rgba(0,0,0,.32),0 0 26px rgba(120,120,255,.06)}
+.leadership-year{font:9px 'DM Mono',monospace;letter-spacing:.17em;color:#9ca8ff}
+.leadership-card h3{font-size:clamp(21px,3vw,32px);letter-spacing:-.06em;margin:12px 0 8px;color:#eef0ff}
+.leadership-card p{font-size:12px;line-height:1.75;color:#aeb3c8;max-width:650px;margin:0}
+.leadership-card p strong{color:#dbe0ff}
+.leadership-stage{display:inline-block;margin-top:16px;font:8px 'DM Mono',monospace;letter-spacing:.13em;color:#8f96ba;border:1px solid rgba(150,160,255,.14);padding:7px 10px;border-radius:50px;background:rgba(100,110,255,.04)}
+.leadership-milestone.current .leadership-node{border-color:rgba(100,245,255,.5);color:#d5fbff;box-shadow:0 0 30px rgba(100,245,255,.15)}
+.leadership-milestone.current .leadership-card{background:radial-gradient(ellipse at 92% 0%,rgba(100,245,255,.09),transparent 48%),linear-gradient(145deg,rgba(17,26,40,.86),rgba(7,9,17,.78));border-color:rgba(110,220,255,.22)}
+.leadership-milestone.current .leadership-year{color:#8df4ff}
+@keyframes leadOrbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-14px) scale(1.04)}}
+@media(max-width:600px){.leadership-milestone{grid-template-columns:46px 1fr;gap:10px}.leadership-journey:before{left:22px}.leadership-node{width:36px;height:36px}.leadership-card{padding:18px;border-radius:16px}.leadership-orb{width:170px;height:170px;right:0;opacity:.6}}
+@media(prefers-reduced-motion:reduce){.leadership-orb{animation:none}.leadership-card{transition:none}}
+</style></body></html>
