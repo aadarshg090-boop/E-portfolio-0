@@ -761,4 +761,18 @@ body:after{z-index:0!important;background:radial-gradient(ellipse at 12% 20%,rgb
 #contact .contactbox:before{opacity:0!important;animation:none!important}
 @keyframes rippleGlow{from{opacity:.45;transform:translateX(-50%) scale(.96)}to{opacity:.9;transform:translateX(-50%) scale(1.04)}}
 </style>
+
+<style id="desktop-layout-and-contact-contrast-fix">
+/* Desktop refinement: balanced wide layouts, readable contact card */
+@media(min-width:1100px){.wrap{width:min(1240px,calc(100% - 88px))}.hero{gap:clamp(48px,6vw,100px)}.section{padding:clamp(100px,9vw,145px) 0}.grid{gap:20px}.tile{padding:clamp(26px,3vw,42px)}.aboutgrid{gap:clamp(55px,8vw,110px)}.achievements{gap:14px}}
+@media(min-width:1500px){.wrap{width:min(1320px,calc(100% - 120px))}.hero{min-height:88vh}}
+#contact .contactbox{background:radial-gradient(ellipse at 88% 8%,rgba(120,155,255,.16),transparent 42%),linear-gradient(145deg,#12151d,#06070a)!important;color:#f4f6fb!important;border:1px solid rgba(190,210,255,.22)!important;box-shadow:0 28px 85px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07)!important}
+#contact .contactbox .kicker{color:#b5c6ff!important}
+#contact .contactbox h2{color:#f6f7fb!important;text-shadow:0 0 24px rgba(175,190,255,.08)!important}
+#contact .contactrow p{color:#b9c2d2!important}
+#contact .contactlink{color:#f2f5ff!important;background:rgba(255,255,255,.045)!important;border:1px solid rgba(210,225,255,.25)!important;box-shadow:0 5px 20px rgba(0,0,0,.2)!important;backdrop-filter:blur(12px)!important}
+#contact .contactlink:hover{background:linear-gradient(110deg,#c2f7e9,#c3d6ff,#d9c8ff)!important;color:#080a0c!important;border-color:transparent!important;transform:translateY(-3px)!important;box-shadow:0 8px 28px rgba(160,200,255,.18)!important}
+#contact .contactbox:after{color:rgba(220,230,255,.035)!important}
+@media(max-width:780px){#contact .contactbox{padding:clamp(24px,7vw,36px)!important}#contact .contactbox h2{font-size:clamp(38px,10vw,68px)!important;letter-spacing:-.08em!important}.contactrow{gap:20px!important}}
+</style>
 </body></html>
