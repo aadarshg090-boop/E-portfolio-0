@@ -718,4 +718,14 @@ nav,.nav-scrolled,.section,.card,.project-card,.achievement-card,.skill-card,.wh
 *{scrollbar-color:#777 #050505}
 @media(prefers-reduced-motion:reduce){#liveCursorAura{animation:none!important}}
 </style>
+
+<style id="fullmoon-cursor-upgrade">
+html,body,#skyScene,#skyScene .skywash,#skyScene .sunbeam,#skyScene .clouds,#skyScene .horizon,#skyScene .aurora,#skyScene .nightAura,#skyScene .moon{background-color:#000!important}
+#skyScene{opacity:0!important;visibility:hidden!important}
+body{background:#000!important}
+#liveCursorAura{width:76px!important;height:76px!important;opacity:1!important;filter:none!important;mix-blend-mode:screen!important;animation:moonHover 6s ease-in-out infinite!important;}
+#liveCursorAura:before{inset:10px!important;border-radius:50%!important;background:radial-gradient(circle at 32% 28%,#fff 0%,#f6f6f6 48%,#e8e8e8 75%,#cfcfcf 100%)!important;box-shadow:0 0 10px 3px rgba(255,255,255,.8),0 0 28px 10px rgba(255,255,255,.38),0 0 62px 24px rgba(255,255,255,.16)!important;}
+#liveCursorAura:after{display:none!important}
+@keyframes moonHover{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.04)}}
+</style>
 </body></html>
