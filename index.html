@@ -487,6 +487,32 @@ button:hover:after,a.button:hover:after{transform:translateX(130%)}
 @keyframes ringSpin{to{transform:rotateX(66deg) rotateZ(335deg)}}@keyframes ringSpinReverse{to{transform:rotateY(68deg) rotateZ(-332deg)}}
 @media(max-width:780px){#portraitOrb{right:0;top:0;width:105px;height:105px}}
 @media(prefers-reduced-motion:reduce){#portraitOrb,#portraitOrb .orbRing{animation:none}}
+
+/* Premium RGB interface accents — restrained, slow, atmospheric */
+:root{--rgb-a:rgba(95,245,255,.48);--rgb-b:rgba(190,95,255,.42);--rgb-c:rgba(255,95,120,.4)}
+#progress{background:linear-gradient(90deg,#69faff,#a36cff,#ff70b9,#b8ff6a);background-size:220% 100%;animation:rgbProgress 9s linear infinite;box-shadow:0 0 12px rgba(125,220,255,.35)}
+#glow{background:radial-gradient(circle,rgba(100,245,255,.09),rgba(165,100,255,.05) 36%,rgba(255,110,180,.025) 54%,transparent 72%);animation:rgbGlow 18s ease-in-out infinite alternate}
+.mark{border-color:transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,conic-gradient(from 0deg,#6afaff,#aa73ff,#ff72bd,#b8ff6a,#6afaff) border-box;animation:rgbMark 15s linear infinite}
+.kicker,.tilelink,.subhead,.portrait-caption strong{color:#a6f7ff;text-shadow:0 0 18px rgba(95,245,255,.16)}
+.primary{background:linear-gradient(110deg,#9eff70,#6afaff,#b68aff,#ff8acb,#9eff70);background-size:250% 100%;animation:rgbButton 13s linear infinite;color:#07100a;box-shadow:0 7px 26px rgba(106,250,255,.12)}
+.secondary,.pill,.chip,.tag{transition:border-color .35s,box-shadow .35s,background .35s,color .35s}
+.secondary:hover,.pill:hover,.chip:hover{border-color:rgba(106,250,255,.48);box-shadow:0 0 18px rgba(106,250,255,.08),inset 0 0 12px rgba(170,115,255,.04)}
+.links a:hover{color:#83f5ff;text-shadow:0 0 14px rgba(106,250,255,.35)}
+.tile{isolation:isolate}
+.tile:before{content:"";position:absolute;inset:0;opacity:0;pointer-events:none;z-index:0;background:linear-gradient(125deg,rgba(95,245,255,.05),transparent 32%,rgba(180,100,255,.055) 70%,rgba(255,110,180,.045));transition:opacity .45s}
+.tile:hover:before{opacity:1}
+.tile:hover{border-color:rgba(106,250,255,.3);box-shadow:0 14px 48px rgba(0,0,0,.28),0 0 22px rgba(106,250,255,.045)}
+.achievement:hover{border-color:rgba(170,115,255,.36);box-shadow:0 0 20px rgba(170,115,255,.055)}
+.photo-ornament{border-image:linear-gradient(135deg,rgba(106,250,255,.42),rgba(170,115,255,.16),rgba(255,110,180,.2),rgba(184,255,106,.3)) 1}
+#portraitOrb .orbRing{border-color:rgba(106,250,255,.62);box-shadow:0 0 15px rgba(106,250,255,.15),inset 0 0 8px rgba(170,115,255,.12);filter:hue-rotate(0deg);animation:ringSpin 11s linear infinite,rgbRingHue 16s linear infinite}
+#portraitOrb .orbRing.ring2{border-color:rgba(255,115,180,.45);animation:ringSpinReverse 15s linear infinite,rgbRingHue 20s linear infinite reverse}
+#portraitOrb .orbSpark{background:#a8faff;box-shadow:0 0 18px 6px rgba(106,250,255,.6)}
+@keyframes rgbProgress{to{background-position:220% 0}}
+@keyframes rgbGlow{0%{transform:translate(-50%,-50%) scale(.92);filter:hue-rotate(0deg)}100%{transform:translate(-50%,-50%) scale(1.12);filter:hue-rotate(75deg)}}
+@keyframes rgbMark{to{filter:hue-rotate(360deg)}}
+@keyframes rgbButton{to{background-position:250% 0}}
+@keyframes rgbRingHue{to{filter:hue-rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){#progress,#glow,.mark,.primary,#portraitOrb .orbRing{animation:none}}
 </style><script id="cinematic-motion-engine">
 (()=>{const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,atmo=document.createElement('div');atmo.id='motionAtmosphere';document.body.prepend(atmo);
 if(reduce)return;
