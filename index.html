@@ -430,48 +430,9 @@ a,button,input,textarea,select{transition:color .22s,background .22s,border-colo
 #ytModal .yt-close{border:1px solid #3c463d;background:#121813;color:#fff;border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:19px}
 #ytModal .yt-frame{aspect-ratio:16/9;background:#000}
 #ytModal iframe{width:100%;height:100%;border:0;display:block}
-#portfolioAiToggle{position:fixed;right:20px;bottom:26px;z-index:9991;border:1px solid rgba(255,255,255,.22);background:var(--reaction);color:#10140c;border-radius:999px;padding:13px 18px;font:700 12px Manrope,sans-serif;letter-spacing:.04em;box-shadow:0 10px 32px var(--reaction-soft);cursor:pointer}
-#portfolioAiToggle:hover{transform:translateY(-3px)}
-#portfolioAi{position:fixed;right:20px;bottom:86px;z-index:9991;width:min(370px,calc(100vw - 24px));height:min(520px,calc(100vh - 115px));display:none;flex-direction:column;background:rgba(12,16,13,.96);border:1px solid rgba(255,255,255,.15);border-radius:20px;backdrop-filter:blur(24px);box-shadow:0 24px 80px rgba(0,0,0,.6);overflow:hidden}
-#portfolioAi.open{display:flex;animation:uxSlide .25s ease}
-.ai-head{padding:16px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:10px}
-.ai-orb{width:11px;height:11px;border-radius:50%;background:var(--reaction);box-shadow:0 0 15px var(--reaction-soft)}
-.ai-head-main{flex:1}.ai-head-main strong{display:block;font-size:13px;color:#f3f5f3}.ai-head-main small{display:block;font-size:10px;color:#9ca59c;margin-top:4px}
-.ai-close{border:0;background:transparent;color:#ddd;font-size:20px;cursor:pointer}
-.ai-messages{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
-.ai-msg{max-width:88%;white-space:pre-wrap;line-height:1.55;font-size:12px;padding:11px 13px;border-radius:14px}
-.ai-msg.bot{align-self:flex-start;background:#18201a;color:#dce5dc;border:1px solid #26342a}
-.ai-msg.user{align-self:flex-end;background:var(--reaction-soft);border:1px solid var(--reaction);color:#eef4e8}
-.ai-quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 10px}
-.ai-quick button{background:#111713;border:1px solid #29332b;color:#c9d2ca;border-radius:999px;padding:7px 9px;font-size:10px;cursor:pointer}
-.ai-quick button:hover{border-color:var(--reaction);color:var(--reaction)}
-.ai-compose{display:flex;gap:7px;padding:12px;border-top:1px solid rgba(255,255,255,.1)}
-.ai-compose input{flex:1;min-width:0;background:#090d0a;border:1px solid #2b352d;border-radius:12px;color:#f3f7f3;padding:12px;font:12px Manrope}
-.ai-compose button{border:0;border-radius:12px;background:var(--reaction);color:#10140c;font-weight:800;padding:0 15px;cursor:pointer}
-.ai-note{font-size:9px;color:#7f8b80;text-align:center;padding:0 12px 10px}
-@keyframes uxFade{from{opacity:0}to{opacity:1}}
-@keyframes uxSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@media(max-width:520px){#portfolioAiToggle{right:12px;bottom:12px;padding:11px 14px}#portfolioAi{right:12px;bottom:72px;width:calc(100vw - 24px);height:min(500px,calc(100vh - 90px))}#ytModal{padding:12px}}
-@media(prefers-reduced-motion:reduce){#portfolioAi.open,#ytModal.open{animation:none!important}}
+@media(max-width:520px){#ytModal{padding:12px}}
 </style>
 <div id="ytModal" aria-hidden="true"><div class="yt-shell"><div class="yt-top"><span id="ytModalTitle">Video preview</span><button class="yt-close" aria-label="Close video">×</button></div><div class="yt-frame" id="ytFrameSlot"></div></div></div>
-<button id="portfolioAiToggle" aria-expanded="false" aria-controls="portfolioAi">Ask Portfolio AI ✦</button>
-<div id="portfolioAi" role="dialog" aria-label="Portfolio AI chat">
-<div class="ai-head"><span class="ai-orb"></span><div class="ai-head-main"><strong>Aadarsh's Portfolio AI</strong><small>Instant answers · portfolio context</small></div><button class="ai-close" aria-label="Close assistant">×</button></div>
-<div class="ai-messages" id="aiMessages" aria-live="polite"><div class="ai-msg bot">Hey! Ask me about Aadarsh's projects, skills, achievements, debates, or startup journey.</div></div>
-<div class="ai-quick"><button data-q="What projects has Aadarsh built?">Projects</button><button data-q="Tell me about his achievements">Achievements</button><button data-q="What are his skills?">Skills</button><button data-q="Tell me about Setyn">Setyn</button></div>
-<form class="ai-compose" id="aiForm"><input id="aiInput" autocomplete="off" placeholder="Ask something about this portfolio…" aria-label="Ask Portfolio AI"><button type="submit">Send</button></form><div class="ai-note">Portfolio-grounded helper. Not connected to an external AI model.</div></div>
-<script id="ux-upgrade-script">
-(()=>{const root=document.documentElement,ytModal=document.getElementById('ytModal'),slot=document.getElementById('ytFrameSlot'),title=document.getElementById('ytModalTitle');
-function closeVideo(){ytModal.classList.remove('open');ytModal.setAttribute('aria-hidden','true');slot.innerHTML=''}
-document.addEventListener('click',e=>{const btn=e.target.closest('.yt-preview');if(btn){e.preventDefault();const id=btn.dataset.youtube;title.textContent=btn.dataset.title||'Video preview';slot.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?autoplay=1&playsinline=1&rel=0" title="'+title.textContent.replace(/"/g,'&quot;')+'" allow="accelerometer; autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>';ytModal.classList.add('open');ytModal.setAttribute('aria-hidden','false')}});
-ytModal.addEventListener('click',e=>{if(e.target===ytModal||e.target.closest('.yt-close'))closeVideo()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeVideo();ai.classList.remove('open')}})
-const ai=document.getElementById('portfolioAi'),toggle=document.getElementById('portfolioAiToggle'),msgs=document.getElementById('aiMessages'),input=document.getElementById('aiInput'),form=document.getElementById('aiForm');
-async function ask(q){q=q.trim();if(!q)return;addMessage(q,'user');input.value='';const loading=addMessage('Thinking…','bot');loading.classList.add('ai-loading');try{const response=await fetch('/api/portfolio-ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q})});const data=await response.json();loading.classList.remove('ai-loading');loading.textContent=data.reply||data.error||'No response returned.';if(!response.ok)loading.classList.add('ai-error')}catch(error){loading.classList.remove('ai-loading');loading.textContent='AI connection is unavailable. This site needs its Vercel API route deployed and OPENAI_API_KEY configured.';loading.classList.add('ai-error')}}
-function addMessage(text,role){const d=document.createElement('div');d.className='ai-msg '+role;d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
-form.addEventListener('submit',e=>{e.preventDefault();ask(input.value)});document.querySelectorAll('.ai-quick button').forEach(b=>b.addEventListener('click',()=>ask(b.dataset.q)));
-toggle.addEventListener('click',()=>{const open=!ai.classList.contains('open');ai.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));if(open)input.focus()});ai.querySelector('.ai-close').addEventListener('click',()=>{ai.classList.remove('open');toggle.setAttribute('aria-expanded','false')});
-})();</script>
 <style id="aura-infinity-upgrade">
 :root{--aura:#b8ff6a;--aura-rgb:184,255,106;--aura-glow:rgba(184,255,106,.22)}
 body{background-image:radial-gradient(ellipse at 50% 0%,rgba(var(--aura-rgb),.075),transparent 52%),radial-gradient(ellipse at 90% 80%,rgba(var(--aura-rgb),.035),transparent 48%);background-attachment:fixed}
@@ -487,36 +448,8 @@ a:not(.contactlink):hover{color:var(--aura)}
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--aura);outline-offset:4px}
 #glow{filter:blur(12px)}
 #progress{background:linear-gradient(90deg,var(--aura),#fff, var(--aura));box-shadow:0 0 18px var(--aura-glow)}
-#portfolioAiToggle{box-shadow:0 0 0 1px rgba(var(--aura-rgb),.16),0 10px 40px var(--aura-glow),0 0 70px rgba(var(--aura-rgb),.06)}
-.motion-reveal{transition:opacity .9s cubic-bezier(.2,.75,.2,1),transform .9s cubic-bezier(.2,.75,.2,1),filter .9s!important}
-.motion-reveal.motion-in{transition-delay:var(--reveal-delay,0ms)}
-@keyframes auraPulse{0%,100%{box-shadow:0 0 0 0 rgba(var(--aura-rgb),.0)}50%{box-shadow:0 0 0 6px rgba(var(--aura-rgb),.035)}}
-#portfolioAiToggle{animation:auraPulse 5s ease-in-out infinite}
-#portfolioAiToggle:hover{animation:none}
 @media(max-width:700px){#infinityAuraCanvas{opacity:.24}}
-@media(prefers-reduced-motion:reduce){#infinityAuraCanvas{display:none}#portfolioAiToggle{animation:none}}
-</style>
-<canvas id="infinityAuraCanvas" aria-hidden="true"></canvas>
-<script id="infinity-aura-engine">
-(()=>{const c=document.getElementById('infinityAuraCanvas'),ctx=c.getContext('2d',{alpha:true}),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches; if(!ctx||reduced)return;
-let w=0,h=0,dpr=1,mouse={x:-1000,y:-1000},particles=[],raf=0,last=0,visible=true;
-function resize(){dpr=Math.min(devicePixelRatio||1,1.6);w=innerWidth;h=innerHeight;c.width=w*dpr;c.height=h*dpr;c.style.width=w+'px';c.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);const count=Math.min(70,Math.max(26,Math.round(w*h/20000)));particles=Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:.6+Math.random()*1.4,a:.15+Math.random()*.45}))}
-function frame(ts){if(!visible){raf=0;return}const dt=Math.min(32,ts-last||16);last=ts;ctx.clearRect(0,0,w,h);const color=getComputedStyle(document.documentElement).getPropertyValue('--aura-rgb').trim()||'184,255,106';for(let p of particles){const dx=mouse.x-p.x,dy=mouse.y-p.y,dist=Math.hypot(dx,dy);if(dist<135){const force=(1-dist/135)*.012;p.vx-=dx*force;p.vy-=dy*force}p.vx+=(Math.random()-.5)*.012;p.vy+=(Math.random()-.5)*.012;p.vx*=.992;p.vy*=.992;p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.x<-4)p.x=w+4;if(p.x>w+4)p.x=-4;if(p.y<-4)p.y=h+4;if(p.y>h+4)p.y=-4;ctx.beginPath();ctx.fillStyle='rgba('+color+','+(p.a*.7)+')';ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()}
-for(let i=0;i<particles.length;i++){for(let j=i+1;j<particles.length;j++){const a=particles[i],b=particles[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<95){ctx.strokeStyle='rgba('+color+','+(0.08*(1-d/95))+')';ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}}
-raf=requestAnimationFrame(frame)}
-window.addEventListener('resize',resize,{passive:true});window.addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY},{passive:true});document.addEventListener('visibilitychange',()=>{visible=!document.hidden;if(visible&&!raf){last=0;raf=requestAnimationFrame(frame)}});resize();raf=requestAnimationFrame(frame);
-document.addEventListener('pointerdown',e=>{if(e.target.closest('button,a'))return;for(let i=0;i<6;i++){const p={x:e.clientX,y:e.clientY,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2,r:1+Math.random()*1.2,a:.5};particles.push(p)}if(particles.length>90)particles.splice(0,particles.length-90});
-})();
-</script>
-<script id="aura-enhancements">
-(()=>{document.querySelectorAll('button,a').forEach(el=>{el.addEventListener('pointerenter',()=>{if(matchMedia('(pointer:fine)').matches)el.style.setProperty('--hover-lift','-2px')},{passive:true})});})();
-</script><style id="apple-glass-refinement">
-:root{--reaction:#a9f56d;--reaction-soft:rgba(169,245,109,.12);--green:#a9f56d}
-body{background-color:#080a0a!important;transition:background .8s ease}
-#infinityAuraCanvas{opacity:.22!important;filter:blur(.2px)}
-#portfolioAiToggle{background:rgba(19,24,21,.7)!important;color:#f1f5f1!important;border:1px solid rgba(255,255,255,.16)!important;backdrop-filter:blur(30px) saturate(150%)!important;-webkit-backdrop-filter:blur(30px) saturate(150%)!important;box-shadow:0 12px 40px rgba(0,0,0,.25),0 0 20px rgba(169,245,109,.08)!important;border-radius:999px!important;transition:transform .4s cubic-bezier(.2,.8,.2,1),background .4s,border .4s!important}
-#portfolioAiToggle:hover{background:rgba(30,36,31,.84)!important;border-color:rgba(169,245,109,.3)!important}
-#portfolioAi{background:rgba(15,18,17,.72)!important;border:1px solid rgba(255,255,255,.13)!important;backdrop-filter:blur(38px) saturate(155%)!important;-webkit-backdrop-filter:blur(38px) saturate(155%)!important;border-radius:26px!important;box-shadow:0 28px 90px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.07)!important}
+@media(prefers-reduced-motion:reduce){#infinityAuraCanvas{display:none}#portfolioAi{background:rgba(15,18,17,.72)!important;border:1px solid rgba(255,255,255,.13)!important;backdrop-filter:blur(38px) saturate(155%)!important;-webkit-backdrop-filter:blur(38px) saturate(155%)!important;border-radius:26px!important;box-shadow:0 28px 90px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.07)!important}
 .ai-head{background:rgba(255,255,255,.025)}
 .ai-msg{border-radius:18px!important;line-height:1.55!important}
 .ai-msg.bot{background:rgba(255,255,255,.065)!important;border:1px solid rgba(255,255,255,.07)!important}
@@ -531,4 +464,37 @@ body{background-color:#080a0a!important;transition:background .8s ease}
 .yt-shell{background:rgba(14,17,16,.78)!important;backdrop-filter:blur(32px)!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:24px!important}
 :focus-visible{outline:2px solid rgba(169,245,109,.7)!important;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
-</style></body></html>
+</style><style id="cinematic-motion-graphics">
+:root{--motion-ease:cubic-bezier(.16,1,.3,1);--glass-border:rgba(255,255,255,.12)}
+html{scroll-behavior:smooth}
+body{isolation:isolate;overflow-x:hidden}
+#motionAtmosphere{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#motionAtmosphere:before{content:"";position:absolute;width:55vw;height:55vw;max-width:900px;max-height:900px;left:var(--mx,50%);top:var(--my,18%);transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(150,255,180,.075),rgba(130,220,255,.022) 32%,transparent 68%);transition:opacity .7s;filter:blur(20px)}
+#motionAtmosphere:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 15%,rgba(255,255,255,.018) 35%,transparent 55%);transform:translateX(-120%);animation:ambientSweep 18s ease-in-out infinite}
+@keyframes ambientSweep{0%,65%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.motion-reveal{opacity:0;transform:translate3d(0,36px,0) scale(.985);filter:blur(5px);transition:opacity .9s var(--motion-ease),transform 1.05s var(--motion-ease),filter .9s var(--motion-ease);will-change:opacity,transform,filter}
+.motion-reveal.motion-in{opacity:1;transform:none;filter:none}
+.motion-word{display:inline-block;opacity:0;transform:translateY(18px);animation:wordRise .7s var(--motion-ease) forwards}
+@keyframes wordRise{to{opacity:1;transform:translateY(0)}}
+.motion-reveal.motion-in .motion-word{animation-play-state:running}
+[data-motion-stagger]>*{transition-delay:var(--stagger,0ms)}
+.motion-card{transform-style:preserve-3d;transition:transform .55s var(--motion-ease),border-color .4s,box-shadow .45s}
+.motion-card:hover{transform:translateY(-7px) perspective(1000px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));box-shadow:0 30px 80px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.06)}
+.section{isolation:isolate}
+.section-heading,.section h2,.section h3{transition:letter-spacing .8s var(--motion-ease)}
+.section.motion-active .section-heading,.section.motion-active h2{letter-spacing:-.035em}
+a,button{position:relative;overflow:hidden}
+button:after,a.button:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.12),transparent 65%);transform:translateX(-130%);transition:transform .8s var(--motion-ease);pointer-events:none}
+button:hover:after,a.button:hover:after{transform:translateX(130%)}
+@media(prefers-reduced-motion:reduce){#motionAtmosphere:after{animation:none}.motion-reveal{opacity:1;transform:none;filter:none;transition:none}.motion-word{opacity:1;transform:none;animation:none}}
+</style><script id="cinematic-motion-engine">
+(()=>{const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,atmo=document.createElement('div');atmo.id='motionAtmosphere';document.body.prepend(atmo);
+if(reduce)return;
+const revealTargets=document.querySelectorAll('.section h1,.section h2,.section h3,.section .hero,.section .card,.section .project-card,.section .achievement-card,.section .skill-card,.section .why-card,.section .tile,.section .resource-card,.section .lp-card,.contactbox,.section p,.section .button');
+const revealSet=new Set();revealTargets.forEach((el,i)=>{if(el.closest('#portfolioAi')||el.closest('#ytModal'))return;if(el.matches('h1,h2,h3')||el.matches('.hero'))el.classList.add('motion-reveal');else if(!el.classList.contains('motion-reveal'))el.classList.add('motion-reveal');el.style.setProperty('--reveal-delay',Math.min(i%8,7)*65+'ms');revealSet.add(el)});
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('motion-in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -5% 0px'});revealSet.forEach(el=>io.observe(el));
+document.querySelectorAll('.section').forEach(sec=>{const observer=new IntersectionObserver(entries=>entries.forEach(e=>sec.classList.toggle('motion-active',e.isIntersecting)),{threshold:.25});observer.observe(sec)});
+document.querySelectorAll('.card,.project-card,.achievement-card,.skill-card,.why-card,.tile,.resource-card,.lp-card').forEach(card=>{card.classList.add('motion-card');card.addEventListener('pointermove',e=>{if(!matchMedia('(pointer:fine)').matches)return;const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.setProperty('--tilt-x',(-y*3.5).toFixed(2)+'deg');card.style.setProperty('--tilt-y',(x*3.5).toFixed(2)+'deg')},{passive:true});card.addEventListener('pointerleave',()=>{card.style.setProperty('--tilt-x','0deg');card.style.setProperty('--tilt-y','0deg')})});
+window.addEventListener('pointermove',e=>{atmo.style.setProperty('--mx',e.clientX+'px');atmo.style.setProperty('--my',e.clientY+'px')},{passive:true});
+})();
+</script></body></html>
