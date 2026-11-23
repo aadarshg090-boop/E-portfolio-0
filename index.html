@@ -690,4 +690,32 @@ const phases=[['sunset',0],['dusk',38],['night',86],['sunrise',210],['daylight',
 const sections=[...document.querySelectorAll('main section')];let current=-1;function sectionMood(){const y=innerHeight*.46;let index=sections.findIndex(sec=>{const r=sec.getBoundingClientRect();return r.top<=y&&r.bottom>y});if(index===current)return;current=index;const palette=[['#ff9d76','70%','36%'],['#b2a1ff','20%','28%'],['#75d7c8','82%','22%'],['#b5a4ff','48%','18%'],['#f3b8aa','22%','40%']];const c=palette[Math.max(0,index)%palette.length];sky.style.setProperty('--sky-color',c[0]);sky.style.setProperty('--sky-x',c[1]);sky.style.setProperty('--sky-y',c[2])}addEventListener('scroll',sectionMood,{passive:true});sectionMood();
 const trans=document.getElementById('sectionTransition');let lock=false;document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',e=>{const target=document.querySelector(link.getAttribute('href'));if(!target||reduce||lock)return;lock=true;trans.style.setProperty('--tx',e.clientX?e.clientX+'px':'50%');trans.style.setProperty('--ty',e.clientY?e.clientY+'px':'50%');trans.classList.add('active');setTimeout(()=>trans.classList.remove('active'),650);setTimeout(()=>lock=false,850)}));
 })();
-</script></body></html>
+</script>
+<style id="monochrome-cinematic-rework">
+:root{--green:#f5f5f5!important;--lime:#ffffff!important;--accent:#fff!important;--bg:#030303!important;--text:#f4f4f4!important;--line:rgba(255,255,255,.16)!important;--motion:cubic-bezier(.16,1,.3,1)}
+html,body{background:#020202!important;color:#f5f5f5!important}
+body:before{opacity:.025!important}
+#progress{background:#fff!important;box-shadow:0 0 12px rgba(255,255,255,.35)!important}
+#glow{background:radial-gradient(circle,rgba(255,255,255,.055),transparent 72%)!important}
+#liveCursorAura{width:44px!important;height:44px!important;opacity:1!important;background:none!important;mix-blend-mode:normal!important;filter:drop-shadow(0 0 9px rgba(255,255,255,.3))!important}
+#liveCursorAura:before{content:"";position:absolute;inset:0;border-radius:50%;background:#fff;box-shadow:0 0 16px rgba(255,255,255,.42);}
+#liveCursorAura:after{content:"";position:absolute;width:38px;height:38px;left:10px;top:-5px;border-radius:50%;background:#030303;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+#liveCursorAura{animation:moonFloat 5s ease-in-out infinite}
+@keyframes moonFloat{0%,100%{transform:translate(-50%,-50%) rotate(-9deg)}50%{transform:translate(-50%,-50%) rotate(9deg)}}
+#contact .contactbox{background:#080808!important;color:#fff!important;border:1px solid rgba(255,255,255,.25)!important;box-shadow:0 30px 80px rgba(255,255,255,.025),inset 0 1px 0 rgba(255,255,255,.08)!important}
+#contact .contactbox:before,#contact .contactbox:after{background:linear-gradient(110deg,transparent,rgba(255,255,255,.06),transparent)!important}
+.primary,.btn.primary,.admin-actions button.primary{background:#fff!important;color:#050505!important;border:1px solid #fff!important}
+.primary:hover,.btn.primary:hover{box-shadow:0 0 25px rgba(255,255,255,.16)!important}
+nav,.nav-scrolled,.section,.card,.project-card,.achievement-card,.skill-card,.why-card,.contactbox,.resource-card,.portrait-frame,.admin-panel,.admin-actions button,.secondary{border-color:rgba(255,255,255,.15)!important}
+.kicker,.smallnote,.portrait-caption strong,.sectionhead .accent,.highlight,.tag,.chip{color:#fff!important}
+.project-card,.achievement-card,.skill-card,.why-card,.card{background:rgba(255,255,255,.025)!important}
+.project-card:hover,.achievement-card:hover,.skill-card:hover,.why-card:hover,.card:hover{border-color:rgba(255,255,255,.4)!important;box-shadow:0 20px 60px rgba(255,255,255,.035)!important}
+.portrait-frame{border-color:rgba(255,255,255,.22)!important;box-shadow:0 25px 80px #000,0 0 35px rgba(255,255,255,.04)!important}
+#skyScene{--sky-color:#fff!important}
+#skyScene .sunbeam,#skyScene .aurora,#skyScene .skywash{filter:grayscale(1)!important}
+#skyScene .star{background:#fff!important;box-shadow:0 0 5px rgba(255,255,255,.6)!important}
+#sectionTransition{background:radial-gradient(circle at var(--tx,50%) var(--ty,50%),rgba(255,255,255,.16),transparent 65%)!important}
+*{scrollbar-color:#777 #050505}
+@media(prefers-reduced-motion:reduce){#liveCursorAura{animation:none!important}}
+</style>
+</body></html>
