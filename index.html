@@ -490,4 +490,42 @@ function ask(q){q=q.trim();if(!q)return;addMessage(q,'user');input.value='';setT
 form.addEventListener('submit',e=>{e.preventDefault();ask(input.value)});document.querySelectorAll('.ai-quick button').forEach(b=>b.addEventListener('click',()=>ask(b.dataset.q)));
 toggle.addEventListener('click',()=>{const open=!ai.classList.contains('open');ai.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));if(open)input.focus()});ai.querySelector('.ai-close').addEventListener('click',()=>{ai.classList.remove('open');toggle.setAttribute('aria-expanded','false')});
 })();</script>
-</body></html>
+<style id="aura-infinity-upgrade">
+:root{--aura:#b8ff6a;--aura-rgb:184,255,106;--aura-glow:rgba(184,255,106,.22)}
+body{background-image:radial-gradient(ellipse at 50% 0%,rgba(var(--aura-rgb),.075),transparent 52%),radial-gradient(ellipse at 90% 80%,rgba(var(--aura-rgb),.035),transparent 48%);background-attachment:fixed}
+::selection{background:var(--aura);color:#060907}
+#infinityAuraCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.48}
+main,.site,.wrap,#portfolio{position:relative;z-index:2}
+.section{position:relative}
+.section:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.45;background:radial-gradient(ellipse at 0% 35%,rgba(var(--aura-rgb),.04),transparent 45%);z-index:0}
+.section>*{position:relative;z-index:1}
+.project-card,.card,.achievement-card,.skill-card,.why-card,.tile,.contactbox,.resource-card,.lp-card{border-color:rgba(var(--aura-rgb),.13)!important;transition:transform .35s cubic-bezier(.18,.72,.2,1),border-color .3s,box-shadow .3s,background .3s}
+.project-card:hover,.card:hover,.achievement-card:hover,.skill-card:hover,.why-card:hover,.tile:hover,.resource-card:hover,.lp-card:hover{border-color:rgba(var(--aura-rgb),.38)!important;box-shadow:0 20px 70px rgba(0,0,0,.32),0 0 24px rgba(var(--aura-rgb),.06)}
+a:not(.contactlink):hover{color:var(--aura)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--aura);outline-offset:4px}
+#glow{filter:blur(12px)}
+#progress{background:linear-gradient(90deg,var(--aura),#fff, var(--aura));box-shadow:0 0 18px var(--aura-glow)}
+#portfolioAiToggle{box-shadow:0 0 0 1px rgba(var(--aura-rgb),.16),0 10px 40px var(--aura-glow),0 0 70px rgba(var(--aura-rgb),.06)}
+.motion-reveal{transition:opacity .9s cubic-bezier(.2,.75,.2,1),transform .9s cubic-bezier(.2,.75,.2,1),filter .9s!important}
+.motion-reveal.motion-in{transition-delay:var(--reveal-delay,0ms)}
+@keyframes auraPulse{0%,100%{box-shadow:0 0 0 0 rgba(var(--aura-rgb),.0)}50%{box-shadow:0 0 0 6px rgba(var(--aura-rgb),.035)}}
+#portfolioAiToggle{animation:auraPulse 5s ease-in-out infinite}
+#portfolioAiToggle:hover{animation:none}
+@media(max-width:700px){#infinityAuraCanvas{opacity:.24}}
+@media(prefers-reduced-motion:reduce){#infinityAuraCanvas{display:none}#portfolioAiToggle{animation:none}}
+</style>
+<canvas id="infinityAuraCanvas" aria-hidden="true"></canvas>
+<script id="infinity-aura-engine">
+(()=>{const c=document.getElementById('infinityAuraCanvas'),ctx=c.getContext('2d',{alpha:true}),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches; if(!ctx||reduced)return;
+let w=0,h=0,dpr=1,mouse={x:-1000,y:-1000},particles=[],raf=0,last=0,visible=true;
+function resize(){dpr=Math.min(devicePixelRatio||1,1.6);w=innerWidth;h=innerHeight;c.width=w*dpr;c.height=h*dpr;c.style.width=w+'px';c.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);const count=Math.min(70,Math.max(26,Math.round(w*h/20000)));particles=Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:.6+Math.random()*1.4,a:.15+Math.random()*.45}))}
+function frame(ts){if(!visible){raf=0;return}const dt=Math.min(32,ts-last||16);last=ts;ctx.clearRect(0,0,w,h);const color=getComputedStyle(document.documentElement).getPropertyValue('--aura-rgb').trim()||'184,255,106';for(let p of particles){const dx=mouse.x-p.x,dy=mouse.y-p.y,dist=Math.hypot(dx,dy);if(dist<135){const force=(1-dist/135)*.012;p.vx-=dx*force;p.vy-=dy*force}p.vx+=(Math.random()-.5)*.012;p.vy+=(Math.random()-.5)*.012;p.vx*=.992;p.vy*=.992;p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.x<-4)p.x=w+4;if(p.x>w+4)p.x=-4;if(p.y<-4)p.y=h+4;if(p.y>h+4)p.y=-4;ctx.beginPath();ctx.fillStyle='rgba('+color+','+(p.a*.7)+')';ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()}
+for(let i=0;i<particles.length;i++){for(let j=i+1;j<particles.length;j++){const a=particles[i],b=particles[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<95){ctx.strokeStyle='rgba('+color+','+(0.08*(1-d/95))+')';ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}}
+raf=requestAnimationFrame(frame)}
+window.addEventListener('resize',resize,{passive:true});window.addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY},{passive:true});document.addEventListener('visibilitychange',()=>{visible=!document.hidden;if(visible&&!raf){last=0;raf=requestAnimationFrame(frame)}});resize();raf=requestAnimationFrame(frame);
+document.addEventListener('pointerdown',e=>{if(e.target.closest('button,a'))return;for(let i=0;i<6;i++){const p={x:e.clientX,y:e.clientY,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2,r:1+Math.random()*1.2,a:.5};particles.push(p)}if(particles.length>90)particles.splice(0,particles.length-90});
+})();
+</script>
+<script id="aura-enhancements">
+(()=>{const root=document.documentElement;document.querySelectorAll('.color-react').forEach(b=>b.addEventListener('click',()=>{const hex=b.dataset.color;if(!hex)return;const clean=hex.replace('#','');if(clean.length!==6)return;const rgb=[0,2,4].map(i=>parseInt(clean.slice(i,i+2),16)).join(',');root.style.setProperty('--aura',hex);root.style.setProperty('--aura-rgb',rgb);root.style.setProperty('--aura-glow','rgba('+rgb+',.24)'}));document.querySelectorAll('button,a').forEach(el=>{el.addEventListener('pointerenter',()=>{if(matchMedia('(pointer:fine)').matches)el.style.setProperty('--hover-lift','-2px')},{passive:true})});})();
+</script></body></html>
