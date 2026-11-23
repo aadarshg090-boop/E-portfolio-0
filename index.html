@@ -754,4 +754,11 @@ body:after{z-index:0!important;background:radial-gradient(ellipse at 12% 20%,rgb
 @keyframes rippleDrift{0%{transform:translateX(-2%) scaleX(.94)}50%{transform:translateX(2%) scaleX(1.02)}100%{transform:translateX(-2%) scaleX(.94)}}
 @media(prefers-reduced-motion:reduce){#contact:after,#contact .contactbox:before{animation:none!important}}
 </style>
+
+<style id="contact-water-ripple-below-card">
+#contact{padding-bottom:150px!important}
+#contact:after{bottom:8px!important;height:125px!important;width:min(980px,98vw)!important;background:radial-gradient(ellipse at 50% 55%,rgba(115,205,255,.15),transparent 62%),repeating-radial-gradient(ellipse at 50% 65%,transparent 0 32px,rgba(150,220,255,.14) 33px 34px,transparent 35px 68px)!important;filter:blur(1.5px)!important;animation:rippleGlow 8s ease-in-out infinite alternate!important}
+#contact .contactbox:before{opacity:0!important;animation:none!important}
+@keyframes rippleGlow{from{opacity:.45;transform:translateX(-50%) scale(.96)}to{opacity:.9;transform:translateX(-50%) scale(1.04)}}
+</style>
 </body></html>
