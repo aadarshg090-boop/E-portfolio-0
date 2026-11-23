@@ -449,17 +449,12 @@ a,button,input,textarea,select{transition:color .22s,background .22s,border-colo
 .ai-compose input{flex:1;min-width:0;background:#090d0a;border:1px solid #2b352d;border-radius:12px;color:#f3f7f3;padding:12px;font:12px Manrope}
 .ai-compose button{border:0;border-radius:12px;background:var(--reaction);color:#10140c;font-weight:800;padding:0 15px;cursor:pointer}
 .ai-note{font-size:9px;color:#7f8b80;text-align:center;padding:0 12px 10px}
-#colorReactBar{position:fixed;z-index:9990;left:18px;bottom:20px;display:flex;gap:6px;align-items:center;padding:7px 10px;border:1px solid rgba(255,255,255,.12);background:rgba(8,10,9,.75);backdrop-filter:blur(14px);border-radius:999px}
-#colorReactBar .label{font:9px 'DM Mono',monospace;color:#a6b0a5;letter-spacing:.08em;margin-right:3px}
-.color-react{width:17px;height:17px;border:1px solid rgba(255,255,255,.4);border-radius:50%;padding:0;cursor:pointer}
-.color-react[aria-pressed="true"]{outline:2px solid #fff;outline-offset:2px}
 @keyframes uxFade{from{opacity:0}to{opacity:1}}
 @keyframes uxSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@media(max-width:520px){#portfolioAiToggle{right:12px;bottom:12px;padding:11px 14px}#portfolioAi{right:12px;bottom:72px;width:calc(100vw - 24px);height:min(500px,calc(100vh - 90px))}#colorReactBar{left:12px;bottom:12px;gap:5px}.color-react{width:15px;height:15px}#ytModal{padding:12px}}
+@media(max-width:520px){#portfolioAiToggle{right:12px;bottom:12px;padding:11px 14px}#portfolioAi{right:12px;bottom:72px;width:calc(100vw - 24px);height:min(500px,calc(100vh - 90px))}#ytModal{padding:12px}}
 @media(prefers-reduced-motion:reduce){#portfolioAi.open,#ytModal.open{animation:none!important}}
 </style>
 <div id="ytModal" aria-hidden="true"><div class="yt-shell"><div class="yt-top"><span id="ytModalTitle">Video preview</span><button class="yt-close" aria-label="Close video">×</button></div><div class="yt-frame" id="ytFrameSlot"></div></div></div>
-<div id="colorReactBar" aria-label="Live accent color selector"><span class="label">LIVE COLOR</span><button class="color-react" data-color="#b8ff6a" data-soft="rgba(184,255,106,.14)" style="background:#b8ff6a" aria-label="Lime theme" aria-pressed="true"></button><button class="color-react" data-color="#6ad8ff" data-soft="rgba(106,216,255,.15)" style="background:#6ad8ff" aria-label="Blue theme" aria-pressed="false"></button><button class="color-react" data-color="#b58aff" data-soft="rgba(181,138,255,.16)" style="background:#b58aff" aria-label="Violet theme" aria-pressed="false"></button><button class="color-react" data-color="#ff9d79" data-soft="rgba(255,157,121,.16)" style="background:#ff9d79" aria-label="Coral theme" aria-pressed="false"></button><button class="color-react" data-color="#6affcb" data-soft="rgba(106,255,203,.15)" style="background:#6affcb" aria-label="Mint theme" aria-pressed="false"></button></div>
 <button id="portfolioAiToggle" aria-expanded="false" aria-controls="portfolioAi">Ask Portfolio AI ✦</button>
 <div id="portfolioAi" role="dialog" aria-label="Portfolio AI chat">
 <div class="ai-head"><span class="ai-orb"></span><div class="ai-head-main"><strong>Aadarsh's Portfolio AI</strong><small>Instant answers · portfolio context</small></div><button class="ai-close" aria-label="Close assistant">×</button></div>
@@ -471,22 +466,9 @@ a,button,input,textarea,select{transition:color .22s,background .22s,border-colo
 function closeVideo(){ytModal.classList.remove('open');ytModal.setAttribute('aria-hidden','true');slot.innerHTML=''}
 document.addEventListener('click',e=>{const btn=e.target.closest('.yt-preview');if(btn){e.preventDefault();const id=btn.dataset.youtube;title.textContent=btn.dataset.title||'Video preview';slot.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?autoplay=1&playsinline=1&rel=0" title="'+title.textContent.replace(/"/g,'&quot;')+'" allow="accelerometer; autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>';ytModal.classList.add('open');ytModal.setAttribute('aria-hidden','false')}});
 ytModal.addEventListener('click',e=>{if(e.target===ytModal||e.target.closest('.yt-close'))closeVideo()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeVideo();ai.classList.remove('open')}})
-const themes=[...document.querySelectorAll('.color-react')];let chosen=localStorage.getItem('portfolio-accent');if(chosen){const match=themes.find(t=>t.dataset.color===chosen);if(match)applyTheme(match)}
-function applyTheme(btn){root.style.setProperty('--reaction',btn.dataset.color);root.style.setProperty('--reaction-soft',btn.dataset.soft);root.style.setProperty('--green',btn.dataset.color);localStorage.setItem('portfolio-accent',btn.dataset.color);themes.forEach(t=>t.setAttribute('aria-pressed',String(t===btn)))}
-themes.forEach(t=>t.addEventListener('click',()=>applyTheme(t)));
 const ai=document.getElementById('portfolioAi'),toggle=document.getElementById('portfolioAiToggle'),msgs=document.getElementById('aiMessages'),input=document.getElementById('aiInput'),form=document.getElementById('aiForm');
-const answers=[
-{keys:['project','build','website','portfolio'],text:"Aadarsh is building and exploring AI products, web experiences, and creative projects. Browse the Latest Projects gallery for current work and media."},
-{keys:['achievement','award','rank','competition','debate','idl'],text:"Highlights include IDL 2025: India rank 11 and state rank 2, SAI Global Debate semifinalist, theatre team runner-up, ring-tennis gold, and Pragyan at IIT BHU where his Telekinesis team placed 6th."},
-{keys:['skill','edit','video','tool','software'],text:"His skills span video editing (CapCut, Filmora, InShot), AI tools and prototyping, product ideation, robotics/Arduino workshops, and debating/public speaking."},
-{keys:['setyn','startup','company','founder'],text:"Setyn is Aadarsh's privacy-first AI infrastructure concept: making AI work across local devices, private servers, and selected cloud workflows. It is currently an early prototype/idea, not a launched company."},
-{keys:['contact','collaborate','reach','linkedin'],text:"The Contact section has LinkedIn and WhatsApp links. Scroll to the bottom of this portfolio to connect."},
-{keys:['school','grade','class','education'],text:"Aadarsh is a school student who enjoys building technology, debating, creative editing, and exploring startup ideas alongside academics."},
-{keys:['hello','hi','hey','who','aadarsh','about'],text:"Aadarsh is a young builder, debater, and creative technologist interested in AI, product design, startups, video editing, and robotics. Ask me about a specific area for more detail."}
-];
-function reply(q){const n=q.toLowerCase();for(const a of answers){if(a.keys.some(k=>n.includes(k)))return a.text}return "I can answer about Aadarsh's projects, skills, achievements, debate, Setyn, school interests, or contact. Try one of those topics. I'm a portfolio FAQ assistant, not a full generative model."}
-function addMessage(text,role){const d=document.createElement('div');d.className='ai-msg '+role;d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight}
-function ask(q){q=q.trim();if(!q)return;addMessage(q,'user');input.value='';setTimeout(()=>addMessage(reply(q),'bot'),220)}
+async function ask(q){q=q.trim();if(!q)return;addMessage(q,'user');input.value='';const loading=addMessage('Thinking…','bot');loading.classList.add('ai-loading');try{const response=await fetch('/api/portfolio-ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q})});const data=await response.json();loading.classList.remove('ai-loading');loading.textContent=data.reply||data.error||'No response returned.';if(!response.ok)loading.classList.add('ai-error')}catch(error){loading.classList.remove('ai-loading');loading.textContent='AI connection is unavailable. This site needs its Vercel API route deployed and OPENAI_API_KEY configured.';loading.classList.add('ai-error')}}
+function addMessage(text,role){const d=document.createElement('div');d.className='ai-msg '+role;d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
 form.addEventListener('submit',e=>{e.preventDefault();ask(input.value)});document.querySelectorAll('.ai-quick button').forEach(b=>b.addEventListener('click',()=>ask(b.dataset.q)));
 toggle.addEventListener('click',()=>{const open=!ai.classList.contains('open');ai.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));if(open)input.focus()});ai.querySelector('.ai-close').addEventListener('click',()=>{ai.classList.remove('open');toggle.setAttribute('aria-expanded','false')});
 })();</script>
@@ -527,5 +509,26 @@ document.addEventListener('pointerdown',e=>{if(e.target.closest('button,a'))retu
 })();
 </script>
 <script id="aura-enhancements">
-(()=>{const root=document.documentElement;document.querySelectorAll('.color-react').forEach(b=>b.addEventListener('click',()=>{const hex=b.dataset.color;if(!hex)return;const clean=hex.replace('#','');if(clean.length!==6)return;const rgb=[0,2,4].map(i=>parseInt(clean.slice(i,i+2),16)).join(',');root.style.setProperty('--aura',hex);root.style.setProperty('--aura-rgb',rgb);root.style.setProperty('--aura-glow','rgba('+rgb+',.24)'}));document.querySelectorAll('button,a').forEach(el=>{el.addEventListener('pointerenter',()=>{if(matchMedia('(pointer:fine)').matches)el.style.setProperty('--hover-lift','-2px')},{passive:true})});})();
-</script></body></html>
+(()=>{document.querySelectorAll('button,a').forEach(el=>{el.addEventListener('pointerenter',()=>{if(matchMedia('(pointer:fine)').matches)el.style.setProperty('--hover-lift','-2px')},{passive:true})});})();
+</script><style id="apple-glass-refinement">
+:root{--reaction:#a9f56d;--reaction-soft:rgba(169,245,109,.12);--green:#a9f56d}
+body{background-color:#080a0a!important;transition:background .8s ease}
+#infinityAuraCanvas{opacity:.22!important;filter:blur(.2px)}
+#portfolioAiToggle{background:rgba(19,24,21,.7)!important;color:#f1f5f1!important;border:1px solid rgba(255,255,255,.16)!important;backdrop-filter:blur(30px) saturate(150%)!important;-webkit-backdrop-filter:blur(30px) saturate(150%)!important;box-shadow:0 12px 40px rgba(0,0,0,.25),0 0 20px rgba(169,245,109,.08)!important;border-radius:999px!important;transition:transform .4s cubic-bezier(.2,.8,.2,1),background .4s,border .4s!important}
+#portfolioAiToggle:hover{background:rgba(30,36,31,.84)!important;border-color:rgba(169,245,109,.3)!important}
+#portfolioAi{background:rgba(15,18,17,.72)!important;border:1px solid rgba(255,255,255,.13)!important;backdrop-filter:blur(38px) saturate(155%)!important;-webkit-backdrop-filter:blur(38px) saturate(155%)!important;border-radius:26px!important;box-shadow:0 28px 90px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.07)!important}
+.ai-head{background:rgba(255,255,255,.025)}
+.ai-msg{border-radius:18px!important;line-height:1.55!important}
+.ai-msg.bot{background:rgba(255,255,255,.065)!important;border:1px solid rgba(255,255,255,.07)!important}
+.ai-msg.user{background:rgba(169,245,109,.14)!important;border:1px solid rgba(169,245,109,.12)!important}
+.ai-loading{opacity:.65;font-style:italic}
+.ai-error{border-color:rgba(255,170,140,.22)!important;color:#ffd2c4!important;background:rgba(255,110,80,.06)!important}
+.ai-compose{background:rgba(255,255,255,.025)!important;border-top:1px solid rgba(255,255,255,.08)!important}
+.ai-compose input{background:rgba(255,255,255,.055)!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:14px!important;color:#f5f7f5!important}
+.ai-compose button{background:rgba(169,245,109,.88)!important;border-radius:14px!important;color:#10130e!important}
+.ai-quick button{border:1px solid rgba(255,255,255,.11)!important;background:rgba(255,255,255,.04)!important;border-radius:999px!important;color:#c8d0ca!important;transition:all .25s ease}
+.ai-quick button:hover{background:rgba(255,255,255,.09)!important;border-color:rgba(169,245,109,.22)!important}
+.yt-shell{background:rgba(14,17,16,.78)!important;backdrop-filter:blur(32px)!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:24px!important}
+:focus-visible{outline:2px solid rgba(169,245,109,.7)!important;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style></body></html>
