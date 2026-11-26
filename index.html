@@ -775,4 +775,63 @@ body:after{z-index:0!important;background:radial-gradient(ellipse at 12% 20%,rgb
 #contact .contactbox:after{color:rgba(220,230,255,.035)!important}
 @media(max-width:780px){#contact .contactbox{padding:clamp(24px,7vw,36px)!important}#contact .contactbox h2{font-size:clamp(38px,10vw,68px)!important;letter-spacing:-.08em!important}.contactrow{gap:20px!important}}
 </style>
+
+<style id="portfolio-nextgen-interface">
+:root{--nx-white:#f4f7ff;--nx-blue:#a9caff;--nx-cyan:#a6f0e8;--nx-violet:#c6b6ff;--nx-panel:rgba(9,12,18,.82)}
+/* Depth, detail and subtle color — keep the black cinematic foundation */
+body{background:#020306!important}
+body:after{background:radial-gradient(ellipse at 18% 18%,rgba(95,175,255,.07),transparent 33%),radial-gradient(ellipse at 82% 28%,rgba(160,125,255,.075),transparent 36%),radial-gradient(ellipse at 60% 85%,rgba(95,230,205,.045),transparent 38%)!important}
+#progress{background:linear-gradient(90deg,#dfeaff,#a6f0e8,#c5b7ff)!important;box-shadow:0 0 16px rgba(165,210,255,.48)!important}
+.wrap{width:min(1280px,calc(100% - 64px))!important}
+.hero{gap:clamp(36px,6vw,100px)!important}
+.portrait-frame{border-color:rgba(195,220,255,.24)!important;box-shadow:0 28px 95px rgba(0,0,0,.7),0 0 50px rgba(130,180,255,.09)!important}
+.portrait-frame:hover{transform:rotateY(0) rotateZ(0) translateY(-4px)!important}
+.btn,.contactlink,.pill{position:relative;isolation:isolate;overflow:hidden}
+.btn:before,.contactlink:before,.pill:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent,rgba(255,255,255,.14),transparent);transform:translateX(-120%);transition:transform .7s ease;pointer-events:none;z-index:-1}
+.btn:hover:before,.contactlink:hover:before,.pill:hover:before{transform:translateX(120%)}
+.tile,.achievement,.why-card,.resource-card,.leadership-card{transform-style:preserve-3d;will-change:transform;transition:transform .24s ease,border-color .3s,box-shadow .3s!important}
+/* Desktop floating section dock */
+#nextgenDock{position:fixed;left:24px;bottom:22px;z-index:96;display:flex;align-items:center;gap:7px;padding:8px 9px;border:1px solid rgba(205,225,255,.14);border-radius:999px;background:rgba(5,7,12,.76);backdrop-filter:blur(22px) saturate(140%);box-shadow:0 14px 44px rgba(0,0,0,.42);font:9px 'DM Mono',monospace;letter-spacing:.12em;color:#cbd6e7;opacity:0;transform:translateY(12px);transition:opacity .4s,transform .4s}
+#nextgenDock.ready{opacity:1;transform:none}
+#nextgenDock .dock-brand{padding:0 9px;color:#e8f0ff;white-space:nowrap;display:flex;align-items:center;gap:7px}
+#nextgenDock .dock-dot{width:6px;height:6px;border-radius:50%;background:#a6f0e8;box-shadow:0 0 10px #a6f0e8;animation:dockPulse 2s ease-in-out infinite}
+#nextgenDock button{border:0;background:transparent;color:#9eacc0;padding:9px 10px;border-radius:99px;font:inherit;letter-spacing:inherit;cursor:pointer;transition:color .2s,background .2s,transform .2s}
+#nextgenDock button:hover,#nextgenDock button.active{background:rgba(185,210,255,.09);color:#f5f7ff;transform:translateY(-1px)}
+#nextgenDock .dock-shortcut{color:#738198;padding:0 8px;border-left:1px solid rgba(255,255,255,.1);white-space:nowrap}
+/* Command palette */
+#nextgenPalette{position:fixed;inset:0;z-index:120;display:none;align-items:flex-start;justify-content:center;padding:16vh 20px 24px;background:rgba(1,2,5,.68);backdrop-filter:blur(18px)}
+#nextgenPalette.open{display:flex;animation:paletteFade .2s ease both}
+#nextgenPalette .palette-box{width:min(560px,100%);border:1px solid rgba(195,220,255,.2);border-radius:18px;background:linear-gradient(145deg,rgba(15,19,28,.98),rgba(4,5,9,.98));box-shadow:0 40px 120px rgba(0,0,0,.72),0 0 45px rgba(130,180,255,.07);overflow:hidden}
+#nextgenPalette input{width:100%;padding:20px 22px;background:transparent;color:#f5f7ff;border:0;border-bottom:1px solid rgba(205,225,255,.12);outline:none;font:14px Manrope,system-ui;letter-spacing:.01em}
+#nextgenPalette input::placeholder{color:#718094}
+#nextgenPalette .palette-list{padding:8px;max-height:52vh;overflow:auto}
+#nextgenPalette .palette-item{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;padding:12px 13px;border:1px solid transparent;border-radius:10px;background:transparent;color:#c8d3e3;cursor:pointer;font:11px 'DM Mono',monospace;letter-spacing:.07em;transition:background .15s,border .15s,color .15s}
+#nextgenPalette .palette-item:hover,#nextgenPalette .palette-item.selected{background:rgba(170,200,255,.09);border-color:rgba(180,215,255,.14);color:#fff}
+#nextgenPalette .palette-item small{color:#718096;font:9px 'DM Mono',monospace}
+#nextgenPalette .palette-footer{display:flex;justify-content:space-between;padding:11px 15px;border-top:1px solid rgba(205,225,255,.1);color:#768399;font:9px 'DM Mono',monospace}
+#nextgenPalette .palette-empty{padding:22px 15px;color:#7d899c;font:11px 'DM Mono',monospace}
+@keyframes paletteFade{from{opacity:0}to{opacity:1}}
+@keyframes dockPulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media(max-width:1000px){#nextgenDock{left:14px;bottom:14px}}
+@media(max-width:780px){.wrap{width:min(100% - 36px,1280px)!important}#nextgenDock{display:none!important}#nextgenPalette{padding:9vh 14px 16px}#nextgenPalette .palette-box{border-radius:14px}}
+@media(prefers-reduced-motion:reduce){#nextgenDock .dock-dot{animation:none}#nextgenPalette.open{animation:none}}
+</style>
+<script id="portfolio-nextgen-interactions">
+(()=>{
+ const sections=[['Home','#top'],['Work','#work'],['About','#about'],['Timeline','#aadarsh'],['Why I','#why-i'],['Projects','#latest-projects'],['Contact','#contact']];
+ const dock=document.createElement('div');dock.id='nextgenDock';dock.innerHTML='<span class="dock-brand"><i class="dock-dot"></i> PORTFOLIO OS</span>'+sections.slice(1).map(([name,href])=>'<button type="button" data-jump="'+href+'">'+name+'</button>').join('')+'<span class="dock-shortcut">⌘ K</span>';document.body.appendChild(dock);
+ const palette=document.createElement('div');palette.id='nextgenPalette';palette.setAttribute('role','dialog');palette.setAttribute('aria-modal','true');palette.setAttribute('aria-label','Portfolio command palette');palette.innerHTML='<div class="palette-box"><input aria-label="Search portfolio actions" placeholder="Search sections or actions…" autocomplete="off"><div class="palette-list"></div><div class="palette-footer"><span>↑ ↓ Navigate · Enter Open</span><span>ESC Close</span></div></div>';document.body.appendChild(palette);
+ const input=palette.querySelector('input'),list=palette.querySelector('.palette-list');let filtered=sections,selected=0;
+ function render(){list.innerHTML='';if(!filtered.length){list.innerHTML='<div class="palette-empty">No matching section. Try another keyword.</div>';return}filtered.forEach((item,i)=>{const b=document.createElement('button');b.className='palette-item'+(i===selected?' selected':'');b.type='button';b.innerHTML='<span>'+item[0]+'</span><small>GO TO SECTION ↗</small>';b.addEventListener('click',()=>go(item[1]));list.appendChild(b)})}
+ function filter(){const q=input.value.trim().toLowerCase();filtered=sections.filter(x=>x[0].toLowerCase().includes(q)||x[1].toLowerCase().includes(q));selected=0;render()}
+ function open(){palette.classList.add('open');input.value='';filter();setTimeout(()=>input.focus(),20)}function close(){palette.classList.remove('open')}
+ function go(href){close();const target=document.querySelector(href);if(target)target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start')}
+ dock.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.jump)));input.addEventListener('input',filter);palette.addEventListener('click',e=>{if(e.target===palette)close()});
+ document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();open();return}if(!palette.classList.contains('open'))return;if(e.key==='Escape'){close();return}if(e.key==='ArrowDown'){e.preventDefault();selected=Math.min(selected+1,filtered.length-1);render()}if(e.key==='ArrowUp'){e.preventDefault();selected=Math.max(0,selected-1);render()}if(e.key==='Enter'&&filtered[selected])go(filtered[selected][1])});
+ const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){dock.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.jump==='#'+en.target.id))}})},{threshold:.22});sections.slice(1).forEach(([,href])=>{const el=document.querySelector(href);if(el)io.observe(el)});
+ requestAnimationFrame(()=>dock.classList.add('ready'));
+ // Gentle desktop card tilt, disabled on touch / reduced-motion devices.
+ if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){document.querySelectorAll('.tile,.achievement,.why-card,.resource-card,.leadership-card').forEach(card=>{card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(900px) rotateX('+(-y*3.5)+'deg) rotateY('+(x*3.5)+'deg) translateY(-2px)' });card.addEventListener('pointerleave',()=>{card.style.transform=''})})}
+})();
+</script>
 </body></html>
